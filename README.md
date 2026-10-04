@@ -105,6 +105,8 @@ Because BMW prices are right-skewed, the model was trained on the logarithm of t
 
 ```python
 y_train_log = np.log(y_train)
+```
+
 
 After prediction, the result is converted back to the original price scale:
 
