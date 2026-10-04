@@ -19,7 +19,7 @@ The objective of this project is to build a Machine Learning model capable of es
 - MPG
 - Engine size
 
-The project includes the complete Machine Learning workflow:
+The project follows a complete Machine Learning workflow:
 
 **Data → Cleaning → Preprocessing → Feature Scaling → Training → Evaluation → Prediction → Web Application**
 
@@ -29,12 +29,14 @@ The project includes the complete Machine Learning workflow:
 
 The dataset contains information about used BMW vehicles.
 
-Original dataset:
+### Dataset size
+
+**Original dataset:**
 
 - 10,781 observations
 - 9 variables
 
-After data cleaning:
+**After data cleaning:**
 
 - 10,651 observations
 - 9 variables
@@ -64,6 +66,8 @@ Several preprocessing steps were applied before training the model.
 
 ### 1. Data cleaning
 
+The following cleaning operations were performed:
+
 - Removed duplicate observations
 - Removed the anomalous price `123456`
 - Removed invalid zero engine sizes except for BMW i3 vehicles
@@ -71,7 +75,7 @@ Several preprocessing steps were applied before training the model.
 
 ### 2. Categorical variables
 
-Categorical variables were transformed using One-Hot Encoding:
+Categorical variables were transformed using **One-Hot Encoding**:
 
 - `model`
 - `transmission`
@@ -79,7 +83,7 @@ Categorical variables were transformed using One-Hot Encoding:
 
 ### 3. Numerical variables
 
-Numerical variables were standardized using `StandardScaler`:
+Numerical variables were standardized using **StandardScaler**:
 
 - `year`
 - `mileage`
@@ -95,12 +99,14 @@ The final dataset contains **34 features** after encoding.
 
 The final model is a **Linear Regression** model.
 
-Because BMW prices are not uniformly distributed, the model was trained on the logarithm of the target variable:
+Because BMW prices are right-skewed, the model was trained on the logarithm of the target variable.
+
+### Logarithmic target transformation
 
 ```python
 y_train_log = np.log(y_train)
 
-After prediction, the result is converted back to euros:
+After prediction, the result is converted back to the original price scale:
 
 predictions = np.exp(predictions_log)
 
@@ -118,27 +124,28 @@ The final model achieved:
 Metric	Result
 MAE	2,074.57 €
 RMSE	3,199.04 €
-Comparison
+Model comparison
 
 A standard Linear Regression model without the logarithmic transformation obtained approximately:
 
-MAE: 2,775.62 €
-RMSE: 4,038.78 €
+Model	MAE	RMSE
+Linear Regression	2,775.62 €	4,038.78 €
+Linear Regression + Log Target	2,074.57 €	3,199.04 €
 
-Using the logarithm of the target therefore significantly improved the predictions.
+Using the logarithm of the target improved both evaluation metrics.
 
 📊 Visualizations
 Correlation analysis
 
-This graph shows the relationship between the numerical variables and the BMW price.
+The following visualization shows the relationships between the numerical variables and the BMW price.
 
 Cost function
 
-The cost decreases during Gradient Descent, showing that the algorithm progressively minimizes the prediction error.
+The cost function decreases during Gradient Descent, showing that the algorithm progressively minimizes the prediction error.
 
 Predictions
 
-Comparison between actual BMW prices and prices predicted by the Machine Learning model.
+This visualization compares the actual BMW prices with the prices predicted by the Machine Learning model.
 
 🖥️ Streamlit Application
 
@@ -207,7 +214,7 @@ cd BMW-Value-Predictor
 py -m venv .venv
 4. Activate the virtual environment
 
-Windows:
+On Windows:
 
 .venv\Scripts\activate
 5. Install dependencies
