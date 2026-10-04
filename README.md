@@ -107,74 +107,97 @@ Because BMW prices are right-skewed, the model was trained on the logarithm of t
 y_train_log = np.log(y_train)
 ```
 
-
 After prediction, the result is converted back to the original price scale:
 
+```python
 predictions = np.exp(predictions_log)
+```
 
 This approach significantly improved the model compared with directly predicting the price.
 
-📈 Model Evaluation
+---
+
+## 📈 Model Evaluation
 
 The dataset was divided into:
 
-80% training data
-20% test data
+- 80% training data
+- 20% test data
 
 The final model achieved:
 
-Metric	Result
-MAE	2,074.57 €
-RMSE	3,199.04 €
-Model comparison
+| Metric | Result |
+|---|---|
+| MAE | 2,074.57 € |
+| RMSE | 3,199.04 € |
+
+### Model comparison
 
 A standard Linear Regression model without the logarithmic transformation obtained approximately:
 
-Model	MAE	RMSE
-Linear Regression	2,775.62 €	4,038.78 €
-Linear Regression + Log Target	2,074.57 €	3,199.04 €
+| Model | MAE | RMSE |
+|---|---|---|
+| Linear Regression | 2,775.62 € | 4,038.78 € |
+| Linear Regression + Log Target | 2,074.57 € | 3,199.04 € |
 
 Using the logarithm of the target improved both evaluation metrics.
 
-📊 Visualizations
-Correlation analysis
+---
+
+## 📊 Visualizations
+
+### Correlation analysis
 
 The following visualization shows the relationships between the numerical variables and the BMW price.
 
-Cost function
+![Correlation analysis](images/correlation.png)
+
+### Cost function
 
 The cost function decreases during Gradient Descent, showing that the algorithm progressively minimizes the prediction error.
 
-Predictions
+![Cost function](images/cost_function.png)
+
+### Predictions
 
 This visualization compares the actual BMW prices with the prices predicted by the Machine Learning model.
 
-🖥️ Streamlit Application
+![Predictions](images/predictions.png)
+
+---
+
+## 🖥️ Streamlit Application
 
 The project includes an interactive web application developed with Streamlit.
 
 The user can enter:
 
-BMW model
-Year
-Mileage
-Transmission
-Fuel type
-Tax
-MPG
-Engine size
+- BMW model
+- Year
+- Mileage
+- Transmission
+- Fuel type
+- Tax
+- MPG
+- Engine size
 
 The application then returns an estimated BMW price.
 
-Run the application
+### Run the application
 
 From the project root:
 
+```bash
 streamlit run app/app.py
+```
 
 The application will open in the browser.
 
-📁 Project Structure
+---
+
+## 📁 Project Structure
+
+```text
 BMW-Value-Predictor/
 │
 ├── app/
@@ -207,64 +230,104 @@ BMW-Value-Predictor/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
-⚙️ Installation
-1. Clone the repository
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/TahtatMoussa/BMW-Value-Predictor.git
-2. Navigate to the project
+```
+
+### 2. Navigate to the project
+
+```bash
 cd BMW-Value-Predictor
-3. Create a virtual environment
+```
+
+### 3. Create a virtual environment
+
+```bash
 py -m venv .venv
-4. Activate the virtual environment
+```
+
+### 4. Activate the virtual environment
 
 On Windows:
 
+```bash
 .venv\Scripts\activate
-5. Install dependencies
+```
+
+### 5. Install dependencies
+
+```bash
 pip install -r requirements.txt
-6. Run the application
+```
+
+### 6. Run the application
+
+```bash
 streamlit run app/app.py
-📦 Technologies
-Python
-NumPy
-Pandas
-Matplotlib
-Scikit-learn
-Streamlit
-Joblib
-Jupyter Notebook
-Git / GitHub
-🧠 Machine Learning Concepts Used
+```
+
+---
+
+## 📦 Technologies
+
+- Python
+- NumPy
+- Pandas
+- Matplotlib
+- Scikit-learn
+- Streamlit
+- Joblib
+- Jupyter Notebook
+- Git / GitHub
+
+---
+
+## 🧠 Machine Learning Concepts Used
 
 This project allowed me to apply the following concepts:
 
-Supervised Learning
-Linear Regression
-Cost Function
-Gradient Descent
-Feature Scaling
-One-Hot Encoding
-Train/Test Split
-Model Evaluation
-Mean Absolute Error (MAE)
-Root Mean Squared Error (RMSE)
-Logarithmic target transformation
-Model serialization with Joblib
-🚀 Future Improvements
+- Supervised Learning
+- Linear Regression
+- Cost Function
+- Gradient Descent
+- Feature Scaling
+- One-Hot Encoding
+- Train/Test Split
+- Model Evaluation
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- Logarithmic target transformation
+- Model serialization with Joblib
+
+---
+
+## 🚀 Future Improvements
 
 Possible improvements include:
 
-Testing more advanced regression models
-Random Forest
-Gradient Boosting
-XGBoost
-Hyperparameter optimization
-Cross-validation
-Better handling of outliers
-Improved prediction intervals
-Deployment of the Streamlit application
-👨‍💻 Author
+- Testing more advanced regression models
+  - Random Forest
+  - Gradient Boosting
+  - XGBoost
+- Hyperparameter optimization
+- Cross-validation
+- Better handling of outliers
+- Improved prediction intervals
+- Deployment of the Streamlit application
 
-Moussa Tahtat
+---
 
-Bachelor 3 — Intelligence Artificielle
+## 👨‍💻 Author
+
+**Moussa Tahtat**
+
+Bachelor 3 — Intelligence Artificielle  
 ECE Paris
